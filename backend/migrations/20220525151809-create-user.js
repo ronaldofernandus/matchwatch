@@ -17,6 +17,7 @@ module.exports = {
       user_password: {
         type: Sequelize.STRING,
       },
+
       user_birthdate: {
         type: Sequelize.DATE,
       },

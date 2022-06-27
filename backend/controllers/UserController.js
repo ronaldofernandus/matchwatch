@@ -48,7 +48,6 @@ class UserController {
         user_name,
         user_email,
         user_password,
-
         user_birthdate,
         user_gender,
         user_avatar,
@@ -59,7 +58,6 @@ class UserController {
         user_name,
         user_email,
         user_password,
-        user_salt,
         user_birthdate,
         user_gender,
         user_avatar,
@@ -67,9 +65,10 @@ class UserController {
       });
       res.status(200).json(result);
     } catch (err) {
-      res.status(404).json({
-        message: `Register has Failed!`,
-      });
+   console.log(err)
+      // res.status(404).json({
+      //   message: `Register has Failed!`,
+      // });
     }
   }
 }
