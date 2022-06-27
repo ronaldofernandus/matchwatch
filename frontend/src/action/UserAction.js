@@ -18,7 +18,7 @@ const get_profile_user = (access_token) => {
     // get API
     axios({
       method: "GET",
-      url: "http://localhost:3000/users/info_user",
+      url: "http://localhost:4000/user/info_user",
       timeout: 120000,
       headers: {
         Access_Token: access_token,
@@ -58,7 +58,7 @@ const addUser = (data) => {
     });
     axios({
       method: "POST",
-      url: "http://localhost:3000/users/register",
+      url: "http://localhost:4000/user/register",
       data: data,
     })
       .then((response) => {

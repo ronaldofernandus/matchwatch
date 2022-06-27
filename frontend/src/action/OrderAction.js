@@ -21,7 +21,7 @@ const addorder = (access_token, id) => {
     // get API
     axios({
       method: "POST",
-      url: `http://localhost:3000/orders/create_order/${id}`,
+      url: `http://localhost:4000/orders/create_order/${id}`,
       timeout: 120000,
       headers: {
         Access_Token: access_token,
@@ -68,7 +68,7 @@ const getorder_user = (access_token) => {
     // get API
     axios({
       method: "GET",
-      url: "http://localhost:3000/orders/order_user",
+      url: "http://localhost:4000/orders/order_user",
       timeout: 120000,
       headers: {
         Access_Token: access_token,
@@ -112,7 +112,7 @@ const updateorderuser = (access_token, data, id) => {
     // get API
     axios({
       method: "PUT",
-      url: `http://localhost:3000/orders/update_order/${id}`,
+      url: `http://localhost:4000/orders/update_order/${id}`,
       timeout: 120000,
       headers: {
         Access_Token: access_token,
@@ -159,7 +159,7 @@ const deleteorderuser = (access_token, id) => {
     // get API
     axios({
       method: "DELETE",
-      url: `http://localhost:3000/orders/delete_order/${id}`,
+      url: `http://localhost:4000/orders/delete_order/${id}`,
       timeout: 120000,
       headers: {
         Access_Token: access_token,
@@ -218,7 +218,7 @@ const getTransaction = (data, id) => {
     // get API
     axios({
       method: "GET",
-      url: `http://localhost:3000/orders/transaction/${id}`,
+      url: `http://localhost:4000/orders/transaction/${id}`,
       timeout: 120000,
     })
       .then((response) => {

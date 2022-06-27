@@ -19,7 +19,7 @@ const get_product_detail = (data) => {
     // get API
     axios({
       method: "GET",
-      url: `http://localhost:3000/products/info_product/${data}`,
+      url: `http://localhost:4000/products/info_product/${data}`,
       timeout: 120000,
     })
       .then((response) => {
@@ -59,7 +59,7 @@ const getproduct = () => {
     // get API
     axios({
       method: "GET",
-      url: "http://localhost:3000/products",
+      url: "http://localhost:4000/products",
       timeout: 120000,
     })
       .then((response) => {
