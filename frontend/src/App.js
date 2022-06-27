@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react'
+import MainPage from './pages/MainPage';
+import MainPageAfterLogin from './pages/MainPageAfterLogin';
+
 
 function App() {
+  const [loginStatus, setLoginStatus] = useState(false);
+
+  const loginCbHandler = (result) => {
+    setLoginStatus(result);
+  };
+  useEffect(() => {
+    if (localStorage.getItem("access_token")) {
+      setLoginStatus(true);
+    } else {
+      setLoginStatus(false);
+    }
+  }, [loginStatus]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+     {/* <MainPage></MainPage> Sebelum Login */}
+     { loginStatus ? (
+        <MainPageAfterLogin loginStatus={loginStatus}loginCbHandler={loginCbHandler}></MainPageAfterLogin>
+      ) : (
+        <MainPage loginStatus={loginStatus} loginCbHandler={loginCbHandler}></MainPage>
+      )}
+    </>
   );
 }
 

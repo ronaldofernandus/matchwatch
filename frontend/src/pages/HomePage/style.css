@@ -1,0 +1,30 @@
+.bg-image{
+    background-image: url(./bg-image-1.jpg)
+}
+
+.text-style-h1{
+    color:white;
+    font-family: "Brush Script MT";
+    font-size:90px
+}
+
+.text-style-h4{
+    color:white;
+}
+.submit-btn button{
+    box-sizing: border-box;
+    background-color:#996B35;
+    border: 3px solid #996B35; 
+    border-radius: 20px;
+    color: white;
+    font-weight: bold;
+    width: 240px;
+    height: 40px;
+    text-align: center;
+  }
+  
+  .submit-btn{
+    text-align: center;
+    padding-top:10px;
+    padding-bottom: 20px;
+  }

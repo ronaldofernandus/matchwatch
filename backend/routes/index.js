@@ -17,6 +17,4 @@ route.use("/user", UserRoutes);
 route.use("/shoppingcarts", ShopRoutes);
 route.use("/images", imageRoute);
 
-
-
 module.exports = route;
