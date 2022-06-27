@@ -48,11 +48,14 @@ class UserController {
         user_name,
         user_email,
         user_password,
+
         user_birthdate,
         user_gender,
         user_avatar,
         user_type,
       } = req.body;
+
+      console.log(req.body);
 
       let result = await user.create({
         user_name,
@@ -65,7 +68,7 @@ class UserController {
       });
       res.status(200).json(result);
     } catch (err) {
-   console.log(err)
+      console.log(err);
       // res.status(404).json({
       //   message: `Register has Failed!`,
       // });

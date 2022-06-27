@@ -13,7 +13,7 @@ const UserRoutes = require('./user');
 const ShopRoutes = require('./shopping_cart');
 route.use('/products', ProductRoutes)
 route.use('/orders', OrderRoutes)
-route.use('/users', UserRoutes)
+route.use('/user', UserRoutes)
 route.use('/shoppingcarts', ShopRoutes)
 
 
