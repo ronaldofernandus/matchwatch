@@ -48,7 +48,7 @@ class UserController {
         user_name,
         user_email,
         user_password,
-        user_salt,
+
         user_birthdate,
         user_gender,
         user_avatar,
