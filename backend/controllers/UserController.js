@@ -51,11 +51,9 @@ class UserController {
 
         user_birthdate,
         user_gender,
-
+        user_avatar,
         user_type,
       } = req.body;
-
-      const { user_avatar } = req.file;
 
       let result = await user.create({
         user_name,
