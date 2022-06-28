@@ -23,7 +23,7 @@ function Register() {
   const [user_name, setName] = useState("");
   const [user_email, setEmail] = useState("");
   const [user_password, setPassword] = useState("");
-  const [user_salt, setSalt] = useState("");
+
   const [user_birthdate, setBirthdate] = useState("");
   const [user_gender, setGender] = useState("");
   const [user_avatar, setAvatar] = useState("");
@@ -38,7 +38,7 @@ function Register() {
         user_name: user_name,
         user_email: user_email,
         user_password: user_password,
-        user_salt: user_salt,
+
         user_birthdate: user_birthdate,
         user_gender: user_gender,
         user_avatar: user_avatar,
@@ -109,20 +109,6 @@ function Register() {
                   name="user_password"
                   value={user_password}
                   onChange={(event) => setPassword(event.target.value)}
-                />
-              </div>
-
-              <div className="input-group flex-nowrap input-align">
-                <span className="input-group-text">
-                  <FontAwesomeIcon icon={faFlag}></FontAwesomeIcon>
-                </span>
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Salt"
-                  name="user_salt"
-                  value={user_salt}
-                  onChange={(event) => setSalt(event.target.value)}
                 />
               </div>
 
