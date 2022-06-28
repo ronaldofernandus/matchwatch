@@ -4,7 +4,7 @@ const { authentication } = require("../middleware/auth");
 
 productRoute.get(
   "/info_product/:id",
-  
+
   ProductController.getProductById
 );
 productRoute.put("/:id", authentication, ProductController.updateProduct);
