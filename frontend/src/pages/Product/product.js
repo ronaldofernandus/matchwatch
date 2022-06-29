@@ -53,7 +53,7 @@ function Product() {
                     <div className="col">
                       <div className="card h-100">
                         <img
-                          src={require(`../../images/${e.product_images[0].prim_filename}`)}
+                          src={`http://localhost:4000/images/${e.product_images[0].prim_filename}`}
                           className="card-img-top img-thumbnail"
                           alt="..."
                         />

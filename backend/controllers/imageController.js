@@ -13,6 +13,18 @@ class imageController {
       res.status(500).json(error);
     }
   }
+  static async getImage(req, res) {
+    try {
+      let getImage = await product.findAll({
+        include: [product_image],
+      });
+
+      res.status(200).json(getImage);
+    } catch (error) {
+      // console.log(error);
+      res.status(500).json(error);
+    }
+  }
 
   static async postImage(req, res) {
     try {

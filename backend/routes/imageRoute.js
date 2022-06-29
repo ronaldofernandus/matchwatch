@@ -5,6 +5,7 @@ const authentication = require("../middleware/auth");
 const upload = require("../middleware/multer");
 
 imageRoute.get("/", imageController.getImage);
+
 imageRoute.post(
   "/add",
 

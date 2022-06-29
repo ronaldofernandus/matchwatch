@@ -75,7 +75,7 @@ const ListProduct = () => {
 
                           <td>
                             <img
-                              src={require(`../../images/${image.product_images[0].prim_filename}`)}
+                              src={`http://localhost:4000/images/${image.product_images[0].prim_filename}`}
                               alt=""
                             />
                           </td>
