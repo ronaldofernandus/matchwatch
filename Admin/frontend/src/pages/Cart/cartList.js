@@ -42,10 +42,13 @@ const CartList = () => {
                 <th>No</th>
                 <th>Tanggal Di buat</th>
                 <th>Status</th>
+                <th>Order atas nama</th>
               </tr>
             </thead>
             <tbody>
+              {console.log(getListCartResult)}
               {getListCartResult ? (
+                
                 getListCartResult.map((cart, index) => {
                   return (
                     <>
@@ -53,6 +56,7 @@ const CartList = () => {
                         <th scope="row">{index + 1}</th>
                         <td>{cart.shop_created_on}</td>
                         <td>{cart.shop_status}</td>
+                        <td>{cart.user.user_name}</td>
                       </tr>
                     </>
                   );

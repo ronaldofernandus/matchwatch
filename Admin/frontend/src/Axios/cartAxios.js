@@ -18,7 +18,7 @@ export const getCart = () => {
     });
     axios({
       method: "GET",
-      url: "http://localhost:4000/orders/order_user",
+      url: "http://localhost:4000/shoppingcarts/all",
       timeout: 120000,
 
       headers: {
