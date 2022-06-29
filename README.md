@@ -1,1 +1,1 @@
-# matchwatch
+# matchwatch adalah project akhir bootcamp code id yang saya buat menggunakan bahasa pemrograman javascript ( express js). Selain itu saya juga menggunakan react js yang berguna untuk memberikan suport dalam design tampilan frontend
