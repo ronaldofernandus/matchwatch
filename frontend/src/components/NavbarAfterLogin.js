@@ -22,7 +22,7 @@ function NavbarAfterLogin(props) {
     <nav className="navbar navbar-expand-lg sticky-top bg-color-navbar">
       <div className="container-sm">
         <Link className="nav-link" to="/">
-          <h1 className="title-navbar">Distro</h1>
+          <h1 className="title-navbar">MatchWatch</h1>
         </Link>
         <ul className="navbar-nav justify-content-end">
           <li className="nav-item item-style">

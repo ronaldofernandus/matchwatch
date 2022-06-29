@@ -40,13 +40,24 @@ const Home = () => {
                       <p>{product.prod_price}</p>
                       <div className="gallery">
                         <div className="xzoom-container">
-                          <img
-                            src={`http://localhost:4000/images/${product.product_images[0].prim_filename}`}
-                            alt=""
-                            className="xzoom"
-                            xoriginal={`http://localhost:4000/images/${product.product_images[0].prim_filename}`}
-                            style={{ height: "100%", width: "100%" }}
-                          />
+                          {product ? (
+                            product.product_images.length === 0 ? (
+                              <img
+                                src="https://via.placeholder.com/150"
+                                alt=""
+                              />
+                            ) : (
+                              <img
+                                src={`http://localhost:4000/images/${product.product_images[0].prim_filename}`}
+                                alt=""
+                                className="xzoom"
+                                xoriginal={`http://localhost:4000/images/${product.product_images[0].prim_filename}`}
+                                style={{ height: "100%", width: "100%" }}
+                              />
+                            )
+                          ) : (
+                            <img src="https://via.placeholder.com/150" alt="" />
+                          )}
                         </div>
 
                         <div className="xzoom-thumbs">

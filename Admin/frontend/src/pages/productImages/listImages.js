@@ -74,10 +74,24 @@ const ListProduct = () => {
                           </td> */}
 
                           <td>
-                            <img
-                              src={`http://localhost:4000/images/${image.product_images[0].prim_filename}`}
-                              alt=""
-                            />
+                            {image ? (
+                              image.product_images.length === 0 ? (
+                                <img
+                                  src="https://via.placeholder.com/150"
+                                  alt=""
+                                />
+                              ) : (
+                                <img
+                                  src={`http://localhost:4000/images/${image.product_images[0].prim_filename}`}
+                                  alt=""
+                                />
+                              )
+                            ) : (
+                              <img
+                                src="https://via.placeholder.com/150"
+                                alt=""
+                              />
+                            )}
                           </td>
 
                           <td>
