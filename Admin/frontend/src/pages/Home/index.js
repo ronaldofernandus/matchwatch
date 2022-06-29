@@ -10,6 +10,14 @@ import {
   getProduct,
 } from "../../Axios/productAxios";
 const Home = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const [postPerPage, setPostPerPage] = useState(1);
+
+  const indexOfLastImages = currentPage * postPerPage;
+  const indexOfFirstImages = indexOfLastImages - postPerPage;
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
   const dispatch = useDispatch();
   const {
     getListProductResult,
@@ -22,6 +30,17 @@ const Home = () => {
     getListProductByIdLoading,
     getListProductByIdError,
   } = useSelector((state) => state.productReducers);
+
+  const pageNumber = [];
+
+  for (
+    let i = 1;
+    i <= Math.ceil(getListProductResult.length / postPerPage);
+    i++
+  ) {
+    pageNumber.push(i);
+  }
+
   useEffect(() => {
     dispatch(getProduct());
   }, [dispatch]);
@@ -40,45 +59,52 @@ const Home = () => {
                       <p>{product.prod_price}</p>
                       <div className="gallery">
                         <div className="xzoom-container">
-                          {product ? (
-                            product.product_images.length === 0 ? (
-                              <img
-                                src="https://via.placeholder.com/150"
-                                alt=""
-                              />
-                            ) : (
-                              <img
-                                src={`http://localhost:4000/images/${product.product_images[0].prim_filename}`}
-                                alt=""
-                                className="xzoom"
-                                xoriginal={`http://localhost:4000/images/${product.product_images[0].prim_filename}`}
-                                style={{ height: "100%", width: "100%" }}
-                              />
-                            )
-                          ) : (
-                            <img src="https://via.placeholder.com/150" alt="" />
-                          )}
-                        </div>
+                          {product.product_images
 
-                        <div className="xzoom-thumbs">
-                          {product.product_images.map((imgResult) => {
-                            return (
-                              <>
-                                <Link
-                                  to={`http://localhost:4000/images/${imgResult.prim_filename}`}
-                                >
+                            .slice(indexOfFirstImages, indexOfLastImages)
+                            .map((imgResult) => {
+                              return (
+                                <>
                                   <img
                                     src={`http://localhost:4000/images/${imgResult.prim_filename}`}
                                     alt=""
-                                    className="xzoom-gallery"
-                                    style={{ width: "128" }}
-                                    xpreview={`http://localhost:4000/images/${imgResult.prim_filename}`}
+                                    className="xzoom"
+                                    xoriginal={`http://localhost:4000/images/${imgResult.prim_filename}`}
+                                    style={{ height: "100%", width: "100%" }}
                                   />
-                                </Link>
-                              </>
-                            );
-                          })}
+                                </>
+                              );
+                            })}
+                          <nav aria-label="Page navigation example">
+                            <ul className="pagination">
+                              {pageNumber.map((page) => {
+                                return (
+                                  <>
+                                    <li className="page-item" key={page}>
+                                      <button
+                                        onClick={() => paginate(page)}
+                                        className="page-link"
+                                        href=""
+                                      >
+                                        {page}
+                                      </button>
+                                    </li>
+                                  </>
+                                );
+                              })}
+                            </ul>
+                          </nav>
                         </div>
+
+                        {/* <div className="xzoom-container">
+                          <img
+                            src={`http://localhost:4000/images/${product.product_images[0].prim_filename}`}
+                            alt=""
+                            className="xzoom"
+                            xoriginal={`http://localhost:4000/images/${product.product_images[0].prim_filename}`}
+                            style={{ height: "100%", width: "100%" }}
+                          />
+                        </div> */}
                       </div>
                       <h2>Deskripsi</h2>
                       <p>{product.prod_desc}</p>
