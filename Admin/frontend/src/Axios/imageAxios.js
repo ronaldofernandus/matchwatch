@@ -6,7 +6,7 @@ export const getDetailImage = "getDetailImage";
 export const updateImageReducer = "updateImageReducer";
 
 export const getImage = () => {
-  const get_token = localStorage.getItem("get_token");
+  const access_token = localStorage.getItem("access_token");
   return (dispatch) => {
     dispatch({
       type: "getListImage",
@@ -22,7 +22,7 @@ export const getImage = () => {
       timeout: 120000,
 
       headers: {
-        get_token: get_token,
+        access_token: access_token,
       },
     })
       .then((response) => {
@@ -50,7 +50,7 @@ export const getImage = () => {
 
 export const addImage = (data) => {
   console.log("2.Masuk");
-  // const get_token = localStorage.getItem("get_token");
+  // const access_token = localStorage.getItem("access_token");
   return (dispatch) => {
     dispatch({
       type: "addImageReducer",
@@ -67,7 +67,7 @@ export const addImage = (data) => {
       timeout: 120000,
       data: data,
       // headers: {
-      //   get_token: get_token,
+      //   access_token: access_token,
       // },
     })
       .then((response) => {
@@ -96,7 +96,7 @@ export const addImage = (data) => {
 };
 
 export const deleteImage = (id) => {
-  const get_token = localStorage.getItem("get_token");
+  const access_token = localStorage.getItem("access_token");
   return (dispatch) => {
     dispatch({
       type: "deleteImageReducer",
@@ -112,7 +112,7 @@ export const deleteImage = (id) => {
       timeout: 120000,
 
       headers: {
-        get_token: get_token,
+        access_token: access_token,
       },
     })
       .then((response) => {
@@ -156,7 +156,7 @@ export const detailImage = (data) => {
 
 export const updateImage = (data) => {
   console.log("2.Masuk");
-  const get_token = localStorage.getItem("get_token");
+  const access_token = localStorage.getItem("access_token");
   return (dispatch) => {
     dispatch({
       type: "updateImageReducer",
@@ -173,7 +173,7 @@ export const updateImage = (data) => {
       data: data,
 
       headers: {
-        get_token: get_token,
+        access_token: access_token,
       },
     })
       .then((response) => {
