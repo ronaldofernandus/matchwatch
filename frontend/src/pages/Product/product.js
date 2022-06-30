@@ -52,11 +52,19 @@ function Product() {
                   <>
                     <div className="col">
                       <div className="card h-100">
-                        <img
-                          src={`http://localhost:4000/images/${e.product_images[0].prim_filename}`}
-                          className="card-img-top img-thumbnail"
-                          alt="..."
-                        />
+                        {e ? (
+                          e.product_images.length === 0 ? (
+                            <img src="https://via.placeholder.com/150" alt="" />
+                          ) : (
+                            <img
+                              src={`http://localhost:4000/images/${e.product_images[0].prim_filename}`}
+                              alt=""
+                            />
+                          )
+                        ) : (
+                          <img src="https://via.placeholder.com/150" alt="" />
+                        )}
+
                         <div className="card-body">
                           <h5 className="card-title">{e.prod_name}</h5>
                           <p className="card-text">
