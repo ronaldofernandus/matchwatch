@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import "./css/sb-admin-2.css";
-import "./css/sb-admin-2.min.css";
+import "./login.css";
+
 import { Link, useNavigate } from "react-router-dom";
-import { login } from "./img";
+
 // import { loginUser } from "../../Axios/userAxios";
 import axios from "axios";
 
@@ -37,99 +37,80 @@ const Login = (props) => {
   };
 
   return (
-    <div className="loginPage">
-      <div className="row justify-content-center">
-        <div className="col-xl-10 col-lg-12 col-md-9">
-          <div className="card o-hidden border-0 shadow-lg my-5">
-            <div className="card-body p-0">
-              <div className="row">
-                <div className="col-lg-6 d-none d-lg-block">
-                  <img src={login} alt="" />
-                </div>
-                <div className="col-lg-6">
-                  <div className="p-5">
-                    <div className="text-center">
-                      <h1 className="h4 text-gray-900 mb-4">Welcome Back!</h1>
-                    </div>
+    <>
+      <section class="vh-100 gradient-custom">
+        <div class="container py-5 h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+              <div
+                class="card bg-dark text-white"
+                style={{ borderRadius: "1rem" }}
+              >
+                <div class="card-body p-5 text-center">
+                  <div class="mb-md-5 mt-md-4 pb-5">
+                    <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                    <p class="text-white-50 mb-5">
+                      Please enter your login and password!
+                    </p>
 
-                    <div className="form-group">
+                    <div class="form-outline form-white mb-4">
                       <input
                         onChange={(e) =>
                           setForm({ ...form, user_email: e.target.value })
                         }
                         type="email"
-                        className="form-control form-control-user"
-                        id="exampleInputEmail"
-                        aria-describedby="emailHelp"
-                        placeholder="Enter Email Address..."
+                        id="typeEmailX"
+                        class="form-control form-control-lg"
                       />
+                      <label class="form-label" for="typeEmailX">
+                        Email
+                      </label>
                     </div>
-                    <div className="form-group">
+
+                    <div class="form-outline form-white mb-4">
                       <input
                         onChange={(e) =>
                           setForm({ ...form, user_password: e.target.value })
                         }
                         type="password"
-                        className="form-control form-control-user"
-                        id="exampleInputPassword"
-                        placeholder="Password"
+                        id="typePasswordX"
+                        class="form-control form-control-lg"
                       />
+                      <label class="form-label" for="typePasswordX">
+                        Password
+                      </label>
                     </div>
-                    <div className="form-group">
-                      <div className="custom-control custom-checkbox small">
-                        <input
-                          type="checkbox"
-                          className="custom-control-input"
-                          id="customCheck"
-                        />
-                        <label
-                          className="custom-control-label"
-                          for="customCheck"
-                        >
-                          Remember Me
-                        </label>
-                      </div>
-                    </div>
+
+                    <p class="small mb-5 pb-lg-2">
+                      <a class="text-white-50" href="#!">
+                        Forgot password?
+                      </a>
+                    </p>
+
                     <button
                       onClick={() => loginButton()}
-                      className="btn btn-primary btn-user btn-block"
+                      class="btn btn-outline-light btn-lg px-5"
+                      type="submit"
                     >
                       Login
                     </button>
-                    <hr />
-                    <button
-                      to="index.html"
-                      className="btn btn-google btn-user btn-block"
-                    >
-                      <i className="fab fa-google fa-fw"></i> Login with Google
-                    </button>
-                    <Link
-                      to="index.html"
-                      className="btn btn-facebook btn-user btn-block"
-                    >
-                      <i className="fab fa-facebook-f fa-fw"></i> Login with
-                      Facebook
-                    </Link>
+                  </div>
 
-                    <hr />
-                    <div className="text-center">
-                      <Link className="small" to="forgot-password.html">
-                        Forgot Password?
+                  <div>
+                    <p class="mb-0">
+                      Don't have an account?{" "}
+                      <Link to="/register" class="text-white-50 fw-bold">
+                        Sign Up
                       </Link>
-                    </div>
-                    <div className="text-center">
-                      <Link className="small" to="/register">
-                        Create an Account!
-                      </Link>
-                    </div>
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </section>
+    </>
   );
 };
 

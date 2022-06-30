@@ -12,7 +12,6 @@ const Register = () => {
     user_name: "",
     user_email: "",
     user_password: "",
-    user_salt: "",
     user_birthdate: "",
     user_gender: "",
     // user_avatar: "",
@@ -23,7 +22,7 @@ const Register = () => {
     try {
       let registrasiUser = await axios({
         method: "POST",
-        url: "http://localhost:3000/user/register",
+        url: "http://localhost:4000/user/register",
         data: input,
       });
       Swal.fire({
@@ -74,14 +73,6 @@ const Register = () => {
           }
           placeholder="Password"
           name="user_password"
-          className="form-control"
-        />
-
-        <Input
-          type="text"
-          onChange={(e) => setInput({ ...input, user_salt: e.target.value })}
-          placeholder="Salt"
-          name="user_salt"
           className="form-control"
         />
 
