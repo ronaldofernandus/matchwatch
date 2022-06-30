@@ -44,6 +44,7 @@ class UserController {
   }
   static async register(req, res) {
     try {
+      const user_avatar = req.file.filename;
       const {
         user_name,
         user_email,
@@ -51,7 +52,7 @@ class UserController {
 
         user_birthdate,
         user_gender,
-        user_avatar,
+
         user_type,
       } = req.body;
 
