@@ -98,7 +98,7 @@ export const addProduct = (data) => {
 
 export const deleteProduct = (id) => {
   console.log("2.Masuk");
-  const get_token = localStorage.getItem("get_token");
+  const access_token = localStorage.getItem("access_token");
   return (dispatch) => {
     dispatch({
       type: "deleteProductReducer",
@@ -114,7 +114,7 @@ export const deleteProduct = (id) => {
       timeout: 120000,
 
       headers: {
-        get_token: get_token,
+        access_token: access_token,
       },
     })
       .then((response) => {
