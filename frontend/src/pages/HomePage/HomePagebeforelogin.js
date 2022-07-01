@@ -9,7 +9,7 @@ import {
 
 function HomePagebeforelogin() {
   return (
-    <div className="bg-[url('/images/picture.jpg')]">
+    <div className="bg-[url('/images/picture1.png')]">
       <div className="container-fluid">
         <div className="row">
           <div className="col-md-8 offset-md-2">

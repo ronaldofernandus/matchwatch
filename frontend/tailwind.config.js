@@ -11,7 +11,7 @@ module.exports = {
         blueNavy: "#1B2430",
       },
       backgroundImage: {
-        "home": "url('/images/picture.jpg')",
+        "home": "url('/images/picture1.png')",
         
       },
     },
