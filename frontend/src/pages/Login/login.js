@@ -1,94 +1,116 @@
-import React, { useState } from 'react'
-import image_login from './image-login.jpg'
+import React, { useState } from "react";
+import image_login from "./image-login.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import "bootstrap/dist/css/bootstrap.min.css";
-import './style.css'
-import axios from 'axios'
-import Swal from 'sweetalert2';
-import {useNavigate} from 'react-router-dom'
+import "./style.css";
+import axios from "axios";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 function Login(props) {
   const { loginCbHandler } = props;
   const [datalogin, setDatalogin] = useState({
-    user_email:"",
-    user_password:""
-  })
+    user_email: "",
+    user_password: "",
+  });
 
-  
-    const loginUser = async () => {
-        try {
-            let result = await axios({
-                method: 'POST',
-                url: 'http://localhost:4000/user/login',
-                data: datalogin
-            })
-            const access_token = result.data.access_token
-            localStorage.setItem('access_token', access_token)
-            loginCbHandler(true)   
-              
-        } catch (err) {
-            console.log(err.message)
-        }
+  const loginUser = async () => {
+    try {
+      let result = await axios({
+        method: "POST",
+        url: "http://localhost:4000/user/login",
+        data: datalogin,
+      });
+      const access_token = result.data.access_token;
+      localStorage.setItem("access_token", access_token);
+      loginCbHandler(true);
+    } catch (err) {
+      console.log(err.message);
     }
-    const submitHandler = () => {
-        loginUser()
-        
-    }
+  };
+  const submitHandler = () => {
+    loginUser();
+  };
   return (
     <>
-    <div className="bg-login">
-      <br></br>
-      <div className="container-md">
-        <div className="row justify-content-center bg-row">
-          <div className="col-7 bg-col">
-            <img src={image_login} alt="" align="center" className="img-responsive"/>
+      <div className="flex items-center justify-center min-h-screen bg-gray-100">
+        <div className="px-8 py-6 mt-4 text-left bg-white shadow-lg">
+          <div className="flex justify-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-20 h-20 text-blue-600"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path d="M12 14l9-5-9-5-9 5 9 5z" />
+              <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
+              />
+            </svg>
           </div>
-          <div className="col-5 bg-col-1">
-            <h1>Welcome</h1>
-            <h4>Sign in to Your Account</h4>
-           
-              <div className="input-group flex-nowrap input-align-login">
-                <span className="input-group-text">
-                  <FontAwesomeIcon icon={faEnvelope}></FontAwesomeIcon>
-                </span>
-                <input
-                  type="email"
-                  className="form-control"
-                  placeholder="Email Address"
-                  onChange={(e) => setDatalogin({ ...datalogin, user_email: e.target.value })}
-                />
-              </div>
 
-              <div className="input-group flex-nowrap input-align-login">
-                <span className="input-group-text">
-                  <FontAwesomeIcon icon={faLock}></FontAwesomeIcon>
-                </span>
-                <input
-                  type="password"
-                  className="form-control"
-                  placeholder="Password"
-                  onChange={(e) => setDatalogin({ ...datalogin, user_password: e.target.value })}
-                />
-              </div>
+          <h3 className="text-2xl font-bold text-center">
+            Login to your account
+          </h3>
 
-              <div className=" justify-content-center input-group flex-nowrap submit-btn input-align-login">
-                <button
-                  onClick={() => submitHandler()}
-                  className="btn text-add">
-                  Sign in
-                </button>
-              </div>
-           
+          <div className="mt-4">
+            <div>
+              <label className="block" for="email">
+                Email
+              </label>
+              <input
+                onChange={(e) =>
+                  setDatalogin({ ...datalogin, user_email: e.target.value })
+                }
+                type="text"
+                placeholder="Email"
+                className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+              />
+              <span className="text-xs tracking-wide text-red-600">
+                Email field is required{" "}
+              </span>
+            </div>
+
+            <div className="mt-4">
+              <label className="block">Password</label>
+              <input
+                onChange={(e) =>
+                  setDatalogin({
+                    ...datalogin,
+                    user_password: e.target.value,
+                  })
+                }
+                type="password"
+                placeholder="Password"
+                className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+              />
+            </div>
+            <div className="flex items-baseline justify-between">
+              <button
+                onClick={() => submitHandler()}
+                className="px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900"
+              >
+                Login
+              </button>
+              <a
+                href="#"
+                className="text-sm text-blue-600 hover:underline"
+                alt=""
+              >
+                Forgot password?
+              </a>
+            </div>
           </div>
         </div>
       </div>
-      <br></br>
-      <br></br>
-      <br></br>
-    </div>
     </>
-  )
+  );
 }
 
-export default Login
+export default Login;
