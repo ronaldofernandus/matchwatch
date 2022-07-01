@@ -9,7 +9,7 @@ import Register from './Register/register'
 function MainPage() {
   return (
     <>
-    <Navbar></Navbar>
+   
     <Routes>
         <Route path ="/" element={<HomePagebeforelogin></HomePagebeforelogin>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
