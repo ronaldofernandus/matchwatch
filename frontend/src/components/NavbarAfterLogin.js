@@ -14,9 +14,9 @@ function NavbarAfterLogin(props) {
   const { loginCbHandler } = props;
 
   const logoutHandler = () => {
-    localStorage.clear()
-    loginCbHandler(false)
-}
+    localStorage.clear();
+    loginCbHandler(false);
+  };
 
   return (
     <nav className="navbar navbar-expand-lg sticky-top bg-color-navbar">
@@ -24,6 +24,14 @@ function NavbarAfterLogin(props) {
         <Link className="nav-link" to="/">
           <h1 className="title-navbar">MatchWatch</h1>
         </Link>
+        <form class="d-flex">
+          <input
+            class="form-control me-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+        </form>
         <ul className="navbar-nav justify-content-end">
           <li className="nav-item item-style">
             <Link className="nav-link" to="/profile" style={{ color: "white" }}>
@@ -46,7 +54,12 @@ function NavbarAfterLogin(props) {
           </li>
 
           <li className="nav-item item-style">
-            <Link className="nav-link" to="/" style={{ color: "white" }} onClick={() => logoutHandler()}>
+            <Link
+              className="nav-link"
+              to="/"
+              style={{ color: "white" }}
+              onClick={() => logoutHandler()}
+            >
               {" "}
               <span>
                 <FontAwesomeIcon icon={faDoorOpen}></FontAwesomeIcon>

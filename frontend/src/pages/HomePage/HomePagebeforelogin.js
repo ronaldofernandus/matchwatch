@@ -17,6 +17,18 @@ function HomePagebeforelogin() {
             <br></br>
             <br></br>
             <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
             <h1 className="text-center text-style-h1">Welcome to MatchWatch</h1>
 
             <br></br>
