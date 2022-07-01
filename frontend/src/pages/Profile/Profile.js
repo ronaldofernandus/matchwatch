@@ -29,13 +29,14 @@ function Profile() {
           <div className="col-md-6 offset-md-3 line-white"></div>
           <br></br>
           <div className="col-md-6 offset-md-3 col-bg justify-content-center">
+            {console.log(getDetailUserResult)}
             {getDetailUserResult ? (
               getDetailUserResult.map((e) => {
                 return (
                   <>
                     <img
                       className="img-fluid img-thumbnail mx-auto h-25 d-block rounded-circle"
-                      src={e.user_avatar}
+                      src={`http://localhost:4000/images/${e.user_avatar}`}
                       alt=""
                     />
 

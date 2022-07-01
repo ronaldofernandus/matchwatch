@@ -3,8 +3,8 @@ import "./style.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faInfo } from "@fortawesome/free-solid-svg-icons";
 import "bootstrap/dist/css/bootstrap.min.css";
-import image_2 from "./img-2.jpg";
-import image_3 from "./img-3.png";
+import picture from "./picture.jpg";
+
 import { Link } from "react-router-dom";
 import { getproduct, get_product_detail } from "../../action/ProductAction";
 import { useDispatch, useSelector } from "react-redux";
@@ -36,7 +36,7 @@ function Product() {
       <div className="banner-home">
         <img
           className="bd-placeholder-img bd-placeholder-img-lg d-block w-100"
-          src={image_3}
+          src={picture}
           alt=""
         ></img>
       </div>

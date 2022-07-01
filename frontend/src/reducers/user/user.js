@@ -31,7 +31,7 @@ const users_reducer = (state = initialState, action) => {
         getDetailUserError: action.payload.errorMessage,
       };
     case REGISTER:
-      console.log("4.Masuk Reduct");
+      console.log("4.Masuk Reduct",action);
       return {
         ...state,
         registerResult: action.payload.data,
@@ -46,13 +46,7 @@ const users_reducer = (state = initialState, action) => {
         loginError: action.payload.errorMesage,
       };
 
-    case LOGIN:
-      return {
-        ...state,
-        loginResult: action.payload.data,
-        loginLoading: action.payload.loading,
-        loginError: action.payload.errorMesage,
-      };
+  
 
     case LOGOUT:
       return {

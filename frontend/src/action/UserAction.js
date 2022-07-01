@@ -49,23 +49,28 @@ const get_profile_user = (access_token) => {
   };
 };
 export const register = (data) => {
-  console.log("2.Action");
+  // console.log(data)
+  console.log("2.action");
   return (dispatch) => {
+    // Loading
     dispatch({
       type: "REGISTER",
       payload: {
-        loading: true,
+        loading: false,
         data: false,
         errorMessage: false,
       },
     });
+
+    // Success
     axios({
       method: "POST",
       url: "http://localhost:4000/user/register",
+      timeout: 120000,
       data: data,
     })
       .then((response) => {
-        console.log("3.Berhasil", response.data);
+        console.log("3.Berhail", response.data);
         dispatch({
           type: "REGISTER",
           payload: {
@@ -75,14 +80,20 @@ export const register = (data) => {
           },
         });
       })
-      .catch((err) => {
-        console.log("3. Gagal", err.message);
+      .catch((error) => {
+        console.log("3.Gagal", error);
+        // Error
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: error.response.data.message,
+        });
         dispatch({
           type: "REGISTER",
           payload: {
             loading: false,
             data: false,
-            errorMessage: err.message,
+            errorMessage: error.message,
           },
         });
       });

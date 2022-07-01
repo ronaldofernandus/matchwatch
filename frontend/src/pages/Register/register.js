@@ -12,39 +12,35 @@ function Register() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const [user_name, setName] = useState("");
-  const [user_email, setEmail] = useState("");
-  const [user_password, setPassword] = useState("");
-
-  const [user_birthdate, setBirthdate] = useState("");
-  const [user_gender, setGender] = useState("");
-  const [user_avatar, setAvatar] = useState(null);
-  const [user_type, setType] = useState("");
+  const [form, setForm] = useState({
+    user_name: "",
+    user_email: "",
+    user_password: "",
+    user_birthdate: "",
+    user_gender: "",
+    user_avatar: null,
+  });
 
   const { registerResult } = useSelector((state) => state.userReducer);
 
-  const addHandler = (data) => {
-    dispatch(register(data));
-    Swal.fire({
-      icon: "success",
-      title: "Register Success!",
-      text: `You've successfully register!`,
-    });
-    navigate("/login");
-  };
-
   const submitPostHandler = () => {
-    const data = new FormData();
-    data.append("user_name", user_name);
-    data.append("user_email", user_email);
-    data.append("user_password", user_password);
-    data.append("user_birthdate", user_birthdate);
-    data.append("user_gender", user_gender);
-    data.append("user_avatar", user_avatar);
-    data.append("user_type", user_type);
+    console.log("1.Masuk");
 
-    addHandler(data);
+    let formData = new FormData();
+    formData.append("user_name", form.user_name);
+    formData.append("user_email", form.user_email);
+    formData.append("user_password", form.user_password);
+    formData.append("user_birthdate", form.user_birthdate);
+    formData.append("user_gender", form.user_gender);
+    formData.append("user_avatar", form.user_avatar);
+    dispatch(register(formData));
   };
+
+  useEffect(() => {
+    if (registerResult) {
+      navigate("/login");
+    }
+  }, [registerResult, dispatch]);
 
   return (
     <>
@@ -76,8 +72,9 @@ function Register() {
                       </p>
                     </div>
                     <input
-                      value={user_avatar}
-                      onChange={(event) => setAvatar(event.target.value)}
+                      onChange={(event) =>
+                        setForm({ ...form, user_avatar: event.target.value })
+                      }
                       id="file-upload"
                       type="file"
                       className="opacity-0"
@@ -90,88 +87,94 @@ function Register() {
             </div>
           </div>
           <h3 className="text-2xl font-bold text-center">Register</h3>
-          <form action="">
-            <div className="mt-4">
-              <div>
-                <label className="block" for="Name">
-                  Name
-                </label>
-                <input
-                  value={user_name}
-                  onChange={(event) => setName(event.target.value)}
-                  type="text"
-                  placeholder="Name"
-                  className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
-                />
-              </div>
-              <div className="mt-4">
-                <label className="block" for="email">
-                  Email
-                </label>
-                <input
-                  onChange={(event) => setEmail(event.target.value)}
-                  type="text"
-                  placeholder="Email"
-                  className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
-                />
-              </div>
-              <div className="mt-4">
-                <label className="block">Password</label>
-                <input
-                  value={user_password}
-                  onChange={(event) => setPassword(event.target.value)}
-                  type="password"
-                  placeholder="Password"
-                  className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
-                />
-              </div>
-              <div className="mt-4">
-                <label className="block">BirthDate</label>
-                <input
-                  value={user_birthdate}
-                  onChange={(event) => setBirthdate(event.target.value)}
-                  type="date"
-                  placeholder="Birthdate"
-                  className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
-                />
-              </div>
-              <div className="mt-4">
-                <label className="block">Gender</label>
-                <input
-                  value={user_gender}
-                  onChange={(event) => setGender(event.target.value)}
-                  type="text"
-                  placeholder="Gender"
-                  className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
-                />
-              </div>
-              <div className="mt-4">
-                <label className="block">Type</label>
-                <input
-                  value={user_type}
-                  onChange={(event) => setType(event.target.value)}
-                  type="text"
-                  placeholder="user_type"
-                  className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
-                />
-              </div>
 
-              <div className="flex">
-                <button
-                  onClick={() => submitPostHandler()}
-                  className="w-full px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900 bg-blueNavy"
-                >
-                  Create Account
-                </button>
-              </div>
-              <div className="mt-6 text-grey-dark">
-                Already have an account?
-                <Link className="text-blue-600 hover:underline" to="/login">
-                  Log in
-                </Link>
-              </div>
+          <div className="mt-4">
+            <div>
+              <label className="block" for="Name">
+                Name
+              </label>
+              <input
+                onChange={(event) =>
+                  setForm({ ...form, user_name: event.target.value })
+                }
+                type="text"
+                placeholder="Name"
+                className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+              />
             </div>
-          </form>
+            <div className="mt-4">
+              <label className="block" for="email">
+                Email
+              </label>
+              <input
+                onChange={(event) =>
+                  setForm({ ...form, user_email: event.target.value })
+                }
+                type="text"
+                placeholder="Email"
+                className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+              />
+            </div>
+            <div className="mt-4">
+              <label className="block">Password</label>
+              <input
+                onChange={(event) =>
+                  setForm({ ...form, user_password: event.target.value })
+                }
+                type="password"
+                placeholder="Password"
+                className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+              />
+            </div>
+            <div className="mt-4">
+              <label className="block">BirthDate</label>
+              <input
+                onChange={(event) =>
+                  setForm({ ...form, user_birthdate: event.target.value })
+                }
+                type="date"
+                placeholder="Birthdate"
+                className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+              />
+            </div>
+            <div className="mt-4">
+              <label className="block">Gender</label>
+              <input
+                onChange={(event) =>
+                  setForm({ ...form, user_gender: event.target.value })
+                }
+                type="text"
+                placeholder="Gender"
+                className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+              />
+            </div>
+            <div className="mt-4">
+              <label className="block">Type</label>
+              <input
+                onChange={(event) =>
+                  setForm({ ...form, user_type: event.target.value })
+                }
+                type="text"
+                placeholder="user_type"
+                className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+              />
+            </div>
+
+            <div className="flex">
+              <button
+                onClick={() => submitPostHandler()}
+                className="w-full px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900 bg-blueNavy"
+              >
+                Create Account
+              </button>
+            </div>
+            <div className="mt-6 text-grey-dark">
+              Already have an account?
+              <Link className="text-blue-600 hover:underline" to="/login">
+                Log in
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </>
