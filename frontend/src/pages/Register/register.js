@@ -3,46 +3,48 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { BiPencil } from "react-icons/bi";
-import { addUser } from "../../action/UserAction";
+import { register } from "../../action/UserAction";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import Swal from "sweetalert2";
 
 function Register() {
-  const navigation = useNavigate();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const [form, setForm] = useState({
-    user_name: "",
-    user_email: "",
-    user_password: "",
-    user_birthday: "",
-    user_gender: "",
-    user_avatar: null,
-  });
+  const [user_name, setName] = useState("");
+  const [user_email, setEmail] = useState("");
+  const [user_password, setPassword] = useState("");
 
-  const { addUserResult } = useSelector((state) => state.userReducer);
+  const [user_birthdate, setBirthdate] = useState("");
+  const [user_gender, setGender] = useState("");
+  const [user_avatar, setAvatar] = useState(null);
+  const [user_type, setType] = useState("");
 
-  const handleSubmit = (e) => {
-    console.log("1.Mulai");
-    e.preventDefault();
-    let formData = new FormData();
-    formData.append("user_name", form.user_name);
-    formData.append("user_email", form.user_email);
-    formData.append("user_password", form.user_password);
-    formData.append("user_birthday", form.user_birthday);
-    formData.append("user_gender", form.user_gender);
-    formData.append("user_avatar", form.user_avatar);
+  const { registerResult } = useSelector((state) => state.userReducer);
 
-    dispatch(addUser(formData));
+  const addHandler = (data) => {
+    dispatch(register(data));
+    Swal.fire({
+      icon: "success",
+      title: "Register Success!",
+      text: `You've successfully register!`,
+    });
+    navigate("/login");
   };
 
-  useEffect(() => {
-    if (addUserResult) {
-      Swal.fire("Register Successfully!", "Clicked the button!", "success");
-      navigation("/");
-    }
-  }, [addUserResult, dispatch]);
+  const submitPostHandler = () => {
+    const data = new FormData();
+    data.append("user_name", user_name);
+    data.append("user_email", user_email);
+    data.append("user_password", user_password);
+    data.append("user_birthdate", user_birthdate);
+    data.append("user_gender", user_gender);
+    data.append("user_avatar", user_avatar);
+    data.append("user_type", user_type);
+
+    addHandler(data);
+  };
 
   return (
     <>
@@ -74,9 +76,8 @@ function Register() {
                       </p>
                     </div>
                     <input
-                      onChange={(e) => {
-                        setForm({ ...form, user_avatar: e.target.files[0] });
-                      }}
+                      value={user_avatar}
+                      onChange={(event) => setAvatar(event.target.value)}
                       id="file-upload"
                       type="file"
                       className="opacity-0"
@@ -96,9 +97,8 @@ function Register() {
                   Name
                 </label>
                 <input
-                  onChange={(e) =>
-                    setForm({ ...form, user_name: e.target.value })
-                  }
+                  value={user_name}
+                  onChange={(event) => setName(event.target.value)}
                   type="text"
                   placeholder="Name"
                   className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
@@ -109,9 +109,7 @@ function Register() {
                   Email
                 </label>
                 <input
-                  onChange={(e) =>
-                    setForm({ ...form, user_email: e.target.value })
-                  }
+                  onChange={(event) => setEmail(event.target.value)}
                   type="text"
                   placeholder="Email"
                   className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
@@ -120,9 +118,8 @@ function Register() {
               <div className="mt-4">
                 <label className="block">Password</label>
                 <input
-                  onChange={(e) =>
-                    setForm({ ...form, user_pasword: e.target.value })
-                  }
+                  value={user_password}
+                  onChange={(event) => setPassword(event.target.value)}
                   type="password"
                   placeholder="Password"
                   className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
@@ -131,9 +128,8 @@ function Register() {
               <div className="mt-4">
                 <label className="block">BirthDate</label>
                 <input
-                  onChange={(e) =>
-                    setForm({ ...form, user_birthdate: e.target.value })
-                  }
+                  value={user_birthdate}
+                  onChange={(event) => setBirthdate(event.target.value)}
                   type="date"
                   placeholder="Birthdate"
                   className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
@@ -142,9 +138,8 @@ function Register() {
               <div className="mt-4">
                 <label className="block">Gender</label>
                 <input
-                  onChange={(e) =>
-                    setForm({ ...form, user_gender: e.target.value })
-                  }
+                  value={user_gender}
+                  onChange={(event) => setGender(event.target.value)}
                   type="text"
                   placeholder="Gender"
                   className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
@@ -153,9 +148,8 @@ function Register() {
               <div className="mt-4">
                 <label className="block">Type</label>
                 <input
-                  onChange={(e) =>
-                    setForm({ ...form, user_type: e.target.value })
-                  }
+                  value={user_type}
+                  onChange={(event) => setType(event.target.value)}
                   type="text"
                   placeholder="user_type"
                   className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
@@ -164,7 +158,7 @@ function Register() {
 
               <div className="flex">
                 <button
-                  onClick={() => handleSubmit()}
+                  onClick={() => submitPostHandler()}
                   className="w-full px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900 bg-blueNavy"
                 >
                   Create Account

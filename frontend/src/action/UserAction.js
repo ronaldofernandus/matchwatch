@@ -1,7 +1,7 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 const GET_DETAIL_USER = "GET_DETAIL_USER";
-const REGISTER_USER = "REGISTER_USER";
+export const REGISTER = "REGISTER";
 const GET_USER = "GET_USER";
 export const LOGOUT = "LOGOUT";
 export const LOGIN = "LOGIN";
@@ -48,11 +48,11 @@ const get_profile_user = (access_token) => {
       });
   };
 };
-const addUser = (data) => {
+export const register = (data) => {
   console.log("2.Action");
   return (dispatch) => {
     dispatch({
-      type: "REGISTER_USER",
+      type: "REGISTER",
       payload: {
         loading: true,
         data: false,
@@ -67,7 +67,7 @@ const addUser = (data) => {
       .then((response) => {
         console.log("3.Berhasil", response.data);
         dispatch({
-          type: "REGISTER_USER",
+          type: "REGISTER",
           payload: {
             loading: false,
             data: response.data,
@@ -78,7 +78,7 @@ const addUser = (data) => {
       .catch((err) => {
         console.log("3. Gagal", err.message);
         dispatch({
-          type: "addProductReducer",
+          type: "REGISTER",
           payload: {
             loading: false,
             data: false,
@@ -154,4 +154,4 @@ export const logout = (data) => {
   };
 };
 
-export { GET_DETAIL_USER, get_profile_user, addUser, REGISTER_USER };
+export { GET_DETAIL_USER, get_profile_user };
