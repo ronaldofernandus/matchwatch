@@ -20,9 +20,9 @@ function App() {
     <>
      {/* <MainPage></MainPage> Sebelum Login */}
      { loginStatus ? (
-        <MainPageAfterLogin loginStatus={loginStatus}loginCbHandler={loginCbHandler}></MainPageAfterLogin>
+        <MainPageAfterLogin ></MainPageAfterLogin>
       ) : (
-        <MainPage loginStatus={loginStatus} loginCbHandler={loginCbHandler}></MainPage>
+        <MainPage></MainPage>
       )}
     </>
   );

@@ -1,20 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import image_login from "../Login/image-login.jpg";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { BiPencil } from "react-icons/bi";
 import { addUser } from "../../action/UserAction";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faEnvelope,
-  faLock,
-  faUser,
-  faFlag,
-  faVenusMars,
-  faImage,
-  faCalendarDays,
-} from "@fortawesome/free-solid-svg-icons";
-import "./style.css";
+
 import Swal from "sweetalert2";
 
 function Register() {
@@ -33,6 +24,7 @@ function Register() {
   const { addUserResult } = useSelector((state) => state.userReducer);
 
   const handleSubmit = (e) => {
+    console.log("1.Mulai");
     e.preventDefault();
     let formData = new FormData();
     formData.append("user_name", form.user_name);
@@ -180,9 +172,9 @@ function Register() {
               </div>
               <div className="mt-6 text-grey-dark">
                 Already have an account?
-                <a className="text-blue-600 hover:underline" href="#">
+                <Link className="text-blue-600 hover:underline" to="/login">
                   Log in
-                </a>
+                </Link>
               </div>
             </div>
           </form>

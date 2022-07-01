@@ -1,36 +1,29 @@
-import React, { useState } from "react";
-import image_login from "./image-login.jpg";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
+import React, { useState, useEffect } from "react";
+
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./style.css";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-
-function Login(props) {
-  const { loginCbHandler } = props;
+import { login } from "../../action/UserAction";
+function Login() {
+  const { loginResult } = useSelector((state) => state.userReducer);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [datalogin, setDatalogin] = useState({
     user_email: "",
     user_password: "",
   });
 
-  const loginUser = async () => {
-    try {
-      let result = await axios({
-        method: "POST",
-        url: "http://localhost:4000/user/login",
-        data: datalogin,
-      });
-      const access_token = result.data.access_token;
-      localStorage.setItem("access_token", access_token);
-      loginCbHandler(true);
-    } catch (err) {
-      console.log(err.message);
+  useEffect(() => {
+    if (localStorage.getItem("access_token")) {
+      Swal.fire("Login Success!", "Welcome!", "success");
+      navigate("/product");
     }
-  };
+  }, [loginResult]);
+
   const submitHandler = () => {
-    loginUser();
+    dispatch(login(datalogin));
   };
   return (
     <>

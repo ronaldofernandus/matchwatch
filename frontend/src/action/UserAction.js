@@ -1,8 +1,10 @@
 import axios from "axios";
-
+import Swal from "sweetalert2";
 const GET_DETAIL_USER = "GET_DETAIL_USER";
 const REGISTER_USER = "REGISTER_USER";
 const GET_USER = "GET_USER";
+export const LOGOUT = "LOGOUT";
+export const LOGIN = "LOGIN";
 const get_profile_user = (access_token) => {
   return (dispatch) => {
     // untuk loading
@@ -47,6 +49,7 @@ const get_profile_user = (access_token) => {
   };
 };
 const addUser = (data) => {
+  console.log("2.Action");
   return (dispatch) => {
     dispatch({
       type: "REGISTER_USER",
@@ -62,6 +65,7 @@ const addUser = (data) => {
       data: data,
     })
       .then((response) => {
+        console.log("3.Berhasil", response.data);
         dispatch({
           type: "REGISTER_USER",
           payload: {
@@ -71,16 +75,82 @@ const addUser = (data) => {
           },
         });
       })
-      .catch((err) => [
+      .catch((err) => {
+        console.log("3. Gagal", err.message);
         dispatch({
-          type: "REGISTER_USER",
+          type: "addProductReducer",
           payload: {
             loading: false,
-            data: err.message,
+            data: false,
+            errorMessage: err.message,
+          },
+        });
+      });
+  };
+};
+
+export const login = (data) => {
+  return (dispatch) => {
+    // Loading
+    dispatch({
+      type: "LOGIN",
+      payload: {
+        loading: false,
+        data: false,
+        errorMessage: false,
+      },
+    });
+
+    // Success
+    axios({
+      method: "POST",
+      url: "http://localhost:4000/user/login",
+      timeout: 120000,
+      data: data,
+    })
+      .then((response) => {
+        // localStorage.setItem('id',response.data.UserId);
+
+        localStorage.setItem("access_token", response.data.access_token);
+
+        dispatch({
+          type: "LOGIN",
+          payload: {
+            loading: false,
+            data: response.data,
             errorMessage: false,
           },
-        }),
-      ]);
+        });
+      })
+      .catch((error) => {
+        // Error
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: error.response.data.message,
+        });
+        dispatch({
+          type: "LOGIN",
+          payload: {
+            loading: false,
+            data: false,
+            errorMessage: error.message,
+          },
+        });
+      });
+  };
+};
+
+export const logout = (data) => {
+  return async (dispatch) => {
+    dispatch({
+      type: "CLEAR",
+      payload: {
+        loading: false,
+        data: false,
+        errorMessage: false,
+      },
+    });
   };
 };
 
