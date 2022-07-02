@@ -14,7 +14,7 @@ function MainPageAfterLogin() {
       <NavbarAfterLogin></NavbarAfterLogin>
       <Routes>
         <Route path="">
-          <Route path="product" element={<Product></Product>}></Route>
+          <Route path="" element={<Product></Product>}></Route>
           <Route path="detail">
             <Route path=":id" element={<DetailProduct></DetailProduct>}></Route>
           </Route>

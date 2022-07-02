@@ -10,7 +10,7 @@ import { getproduct, get_product_detail } from "../../action/ProductAction";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import { addorder } from "../../action/OrderAction";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function Product() {
   const [search, setSearch] = useState("");
@@ -27,10 +27,15 @@ function Product() {
       navigate("/order");
     }
   });
+  const { id } = useParams();
+  useEffect(() => {
+ 
+    dispatch(getproduct());
+  }, [dispatch]);
 
   useEffect(() => {
-    console.log("1.Masuk UseEffect");
-    dispatch(getproduct());
+ 
+    dispatch(getproduct(+id));
   }, [dispatch]);
   return (
     <>

@@ -9,14 +9,19 @@ import {
   faDoorOpen,
   faChartBar,
 } from "@fortawesome/free-solid-svg-icons";
-
+import { useNavigate } from "react-router-dom";
 function NavbarAfterLogin(props) {
   const [search, setSearch] = useState("");
   const { loginCbHandler } = props;
-
+  const navigate = useNavigate();
   const logoutHandler = () => {
     localStorage.clear();
     loginCbHandler(false);
+  };
+
+  const searchHandler = () => {
+    
+    navigate("/");
   };
 
   return (
@@ -35,6 +40,13 @@ function NavbarAfterLogin(props) {
             placeholder="Search by Name"
             aria-label="Search"
           />
+          <button
+            onClick={() => searchHandler()}
+            className="btn btn-outline-success"
+            type="submit"
+          >
+            Search
+          </button>
         </form>
         <ul className="navbar-nav justify-content-end">
           <li className="nav-item item-style">

@@ -18,11 +18,29 @@ import { get_product_detail } from "../.././action/ProductAction";
 import { useParams } from "react-router-dom";
 
 function DetailProduct() {
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const [postPerPage, setPostPerPage] = useState(1);
+
+  const indexOfLastImages = currentPage * postPerPage;
+  const indexOfFirstImages = indexOfLastImages - postPerPage;
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
   const {
     getDetailProductResult,
     getDetailProductLoading,
     getDetailProductError,
   } = useSelector((state) => state.productReducer);
+
+  const pageNumber = [];
+
+  for (
+    let i = 1;
+    i <= Math.ceil(getDetailProductResult.length / postPerPage);
+    i++
+  ) {
+    pageNumber.push(i);
+  }
 
   const { id } = useParams();
 
@@ -37,22 +55,52 @@ function DetailProduct() {
     <div className="bg-color-product">
       <br></br>
       <br></br>
-      <div className="container row-bg-color">
+      <div className="container-fluid row-bg-color">
         <br></br>
+        {console.log(getDetailProductResult)}
         {getDetailProductResult ? (
           getDetailProductResult.map((e) => {
             return (
               <>
                 <div className="row justify-content-center ">
-                  <div className="col-7">
-                    <img
-                      src={`http://localhost:4000/images/${e.product_images[0].prim_filename}`}
-                      alt=""
-                      align="center"
-                      className="img-fluid img-responsive img-thumbnail"
-                    />
+                  <div className="col-6">
+                    {e.product_images
+
+                      .slice(indexOfFirstImages, indexOfLastImages)
+                      .map((imgResult) => {
+                        return (
+                          <>
+                            <img
+                              src={`http://localhost:4000/images/${imgResult.prim_filename}`}
+                              alt=""
+                              align="center"
+                            />
+                          </>
+                        );
+                      })}
+
+                    <nav aria-label="Page navigation example">
+                      <ul className="pagination">
+                        {pageNumber.map((page) => {
+                          return (
+                            <>
+                              <li className="page-item" key={page}>
+                                <button
+                                  onClick={() => paginate(page)}
+                                  className="page-link"
+                                  href=""
+                                >
+                                  {page}
+                                </button>
+                              </li>
+                            </>
+                          );
+                        })}
+                      </ul>
+                    </nav>
                   </div>
-                  <div className="col-5 ">
+
+                  <div className="col-4">
                     <div className="card-body">
                       <h5 className="card-title">{e.prod_name}</h5>
                       <p className="card-text">{e.prod_desc}</p>
@@ -129,12 +177,6 @@ function DetailProduct() {
                             Views:{" "}
                           </span>{" "}
                           {e.prod_views}
-                        </small>
-                      </p>
-                      <p className="card-text">
-                        <small className="text-muted">
-                          {" "}
-                          <Rating initialValue={e.prod_rating} />
                         </small>
                       </p>
                     </div>
