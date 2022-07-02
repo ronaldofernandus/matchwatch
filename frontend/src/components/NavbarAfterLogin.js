@@ -11,7 +11,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 function NavbarAfterLogin(props) {
-  const [search, setSearch] = useState("");
   const { loginCbHandler } = props;
   const navigate = useNavigate();
   const logoutHandler = () => {
@@ -19,10 +18,13 @@ function NavbarAfterLogin(props) {
     loginCbHandler(false);
   };
 
-  const searchHandler = () => {
+  const [query, setQuery] = useState("");
 
-    navigate("/search");
-  };
+  const [queryDone, setQueryDone] = useState(false);
+
+  useEffect(() => {
+    navigate(`${query}`);
+  }, [queryDone]);
 
   return (
     <nav className="navbar navbar-expand-lg sticky-top bg-color-navbar">
@@ -33,7 +35,7 @@ function NavbarAfterLogin(props) {
         <form class="d-flex">
           <input
             onChange={(e) => {
-              setSearch(e.target.value);
+              setQuery(e.target.value);
             }}
             className=" search form-control me-1"
             type="search"
@@ -41,7 +43,7 @@ function NavbarAfterLogin(props) {
             aria-label="Search"
           />
           <button
-            onClick={() => searchHandler()}
+            onClick={() => setQueryDone(true)}
             className="btn btn-outline-success"
             type="submit"
           >

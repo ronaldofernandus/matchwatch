@@ -17,7 +17,7 @@ function MainPageAfterLogin() {
         <Route path="">
           <Route path="" element={<Product></Product>}></Route>
 
-          <Route path="search" element={<Search></Search>}></Route>
+          <Route path=":query" element={<Search />}></Route>
 
           <Route path="detail">
             <Route path=":id" element={<DetailProduct></DetailProduct>}></Route>

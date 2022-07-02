@@ -52,19 +52,7 @@ function Product() {
           <div className="row row-cols-1 row-cols-md-3 g-4">
             {getProductResult ? (
               getProductResult
-                .filter((products) => {
-                  console.log(products);
-                  if (search === "") {
-                    return products;
-                  } else if (
-                    products.prod_name
-                      .toLowerCase()
-                      .includes(search.toLowerCase())
-                  ) {
-                    return products;
-                  }
-                })
-
+                
                 .map((e) => {
                   return (
                     <>

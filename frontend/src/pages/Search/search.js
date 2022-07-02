@@ -27,14 +27,12 @@ function Search() {
       navigate("/order");
     }
   });
-  const { id } = useParams();
+  const { query } = useParams();
+  console.log(query);
   useEffect(() => {
     dispatch(getproduct());
   }, [dispatch]);
 
-  useEffect(() => {
-    dispatch(getproduct(+id));
-  }, [dispatch]);
   return (
     <>
       <div className="banner-home">
@@ -59,7 +57,7 @@ function Search() {
                   } else if (
                     products.prod_name
                       .toLowerCase()
-                      .includes(search.toLowerCase())
+                      .includes(query.toLowerCase())
                   ) {
                     return products;
                   }
