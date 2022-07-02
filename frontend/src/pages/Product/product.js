@@ -3,7 +3,7 @@ import "./style.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faInfo } from "@fortawesome/free-solid-svg-icons";
 import "bootstrap/dist/css/bootstrap.min.css";
-import picture from "./picture.jpg";
+import picture1 from "./picture1.png";
 
 import { Link } from "react-router-dom";
 import { getproduct, get_product_detail } from "../../action/ProductAction";
@@ -40,7 +40,7 @@ function Product() {
       <div className="banner-home">
         <img
           className="bd-placeholder-img bd-placeholder-img-lg d-block w-100"
-          src={picture}
+          src={picture1}
           alt=""
         ></img>
       </div>
@@ -51,74 +51,67 @@ function Product() {
           <br></br>
           <div className="row row-cols-1 row-cols-md-3 g-4">
             {getProductResult ? (
-              getProductResult
-                
-                .map((e) => {
-                  return (
-                    <>
-                      <div className="col">
-                        <div className="card h-100">
-                          {e ? (
-                            e.product_images.length === 0 ? (
-                              <img
-                                src="https://via.placeholder.com/150"
-                                alt=""
-                              />
-                            ) : (
-                              <img
-                                src={`http://localhost:4000/images/${e.product_images[0].prim_filename}`}
-                                alt=""
-                              />
-                            )
-                          ) : (
+              getProductResult.map((e) => {
+                return (
+                  <>
+                    <div className="col">
+                      <div className="card h-100">
+                        {e ? (
+                          e.product_images.length === 0 ? (
                             <img src="https://via.placeholder.com/150" alt="" />
-                          )}
+                          ) : (
+                            <img
+                              src={`http://localhost:4000/images/${e.product_images[0].prim_filename}`}
+                              alt=""
+                            />
+                          )
+                        ) : (
+                          <img src="https://via.placeholder.com/150" alt="" />
+                        )}
 
-                          <div className="card-body">
-                            <h5 className="card-title">{e.prod_name}</h5>
-                            <p className="card-text">
-                              <span>Rp </span> {e.prod_price}
-                            </p>
-                            <div className="edit-btn d-grid gap-2 d-md-flex justify-content-md-center">
-                              <Link
-                                className="btn btn-sm btn btn-outline-primary"
-                                onClick={() =>
-                                  dispatch(get_product_detail(e.id))
-                                }
-                                to={`detail/${e.id}`}
-                              >
-                                <span>
-                                  <FontAwesomeIcon
-                                    icon={faInfo}
-                                  ></FontAwesomeIcon>
-                                </span>{" "}
-                                Detail
-                              </Link>
-                              <button
-                                className="btn btn-sm btn-outline-success"
-                                onClick={() =>
-                                  dispatch(
-                                    addorder(
-                                      localStorage.getItem("access_token"),
-                                      e.id
-                                    )
+                        <div className="card-body">
+                          <h5 className="card-title">{e.prod_name}</h5>
+                          <p className="card-text">
+                            <span>Rp </span> {e.prod_price}
+                          </p>
+                          <div className="edit-btn d-grid gap-2 d-md-flex justify-content-md-center">
+                            <Link
+                              className="btn btn-sm btn btn-outline-primary"
+                              onClick={() => dispatch(get_product_detail(e.id))}
+                              to={`detail/${e.id}`}
+                            >
+                              <span>
+                                <FontAwesomeIcon
+                                  icon={faInfo}
+                                ></FontAwesomeIcon>
+                              </span>{" "}
+                              Detail
+                            </Link>
+                            <button
+                              className="btn btn-sm btn-outline-success"
+                              onClick={() =>
+                                dispatch(
+                                  addorder(
+                                    localStorage.getItem("access_token"),
+                                    e.id
                                   )
-                                }
-                              >
-                                <span>
-                                  <FontAwesomeIcon
-                                    icon={faPlus}
-                                  ></FontAwesomeIcon>
-                                </span>{" "}
-                                Add
-                              </button>
-                            </div>
+                                )
+                              }
+                            >
+                              <span>
+                                <FontAwesomeIcon
+                                  icon={faPlus}
+                                ></FontAwesomeIcon>
+                              </span>{" "}
+                              Add
+                            </button>
                           </div>
                         </div>
                       </div>
-                    </>
-                  );
-                })
+                    </div>
+                  </>
+                );
+              })
             ) : getProductLoading ? (
               <p>Loading</p>
             ) : (

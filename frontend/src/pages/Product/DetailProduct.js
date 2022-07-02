@@ -11,8 +11,7 @@ import {
   faEye,
 } from "@fortawesome/free-solid-svg-icons";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./style.css";
-import image_2 from "./img-2.jpg";
+
 import { useDispatch, useSelector } from "react-redux";
 import { get_product_detail } from "../.././action/ProductAction";
 import { useParams } from "react-router-dom";

@@ -19,8 +19,9 @@ function Login() {
     if (localStorage.getItem("access_token")) {
       Swal.fire("Login Success!", "Welcome!", "success");
       navigate("/product");
+      dispatch(login(datalogin));
     }
-  }, [loginResult]);
+  }, [loginResult, dispatch]);
 
   const submitHandler = () => {
     dispatch(login(datalogin));
