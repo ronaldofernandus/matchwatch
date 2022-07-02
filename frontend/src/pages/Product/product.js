@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faInfo } from "@fortawesome/free-solid-svg-icons";
@@ -13,6 +13,7 @@ import { addorder } from "../../action/OrderAction";
 import { useNavigate } from "react-router-dom";
 
 function Product() {
+  const [search, setSearch] = useState("");
   const { getProductResult, getProductLoading, getProductError } = useSelector(
     (state) => state.productReducer
   );
@@ -47,67 +48,86 @@ function Product() {
           <br></br>
           <div className="row row-cols-1 row-cols-md-3 g-4">
             {getProductResult ? (
-              getProductResult.map((e) => {
-                return (
-                  <>
-                    <div className="col">
-                      <div className="card h-100">
-                        {e ? (
-                          e.product_images.length === 0 ? (
-                            <img src="https://via.placeholder.com/150" alt="" />
-                          ) : (
-                            <img
-                              src={`http://localhost:4000/images/${e.product_images[0].prim_filename}`}
-                              alt=""
-                            />
-                          )
-                        ) : (
-                          <img src="https://via.placeholder.com/150" alt="" />
-                        )}
+              getProductResult
+                .filter((products) => {
+                  console.log(products);
+                  if (search === "") {
+                    return products;
+                  } else if (
+                    products.prod_name
+                      .toLowerCase()
+                      .includes(search.toLowerCase())
+                  ) {
+                    return products;
+                  }
+                })
 
-                        <div className="card-body">
-                          <h5 className="card-title">{e.prod_name}</h5>
-                          <p className="card-text">
-                            <span>Rp </span> {e.prod_price}
-                          </p>
-                          <div className="edit-btn d-grid gap-2 d-md-flex justify-content-md-center">
-                            <Link
-                              className="btn btn-sm btn btn-outline-primary"
-                              onClick={() => dispatch(get_product_detail(e.id))}
-                              to={`detail/${e.id}`}
-                            >
-                              <span>
-                                <FontAwesomeIcon
-                                  icon={faInfo}
-                                ></FontAwesomeIcon>
-                              </span>{" "}
-                              Detail
-                            </Link>
-                            <button
-                              className="btn btn-sm btn-outline-success"
-                              onClick={() =>
-                                dispatch(
-                                  addorder(
-                                    localStorage.getItem("access_token"),
-                                    e.id
+                .map((e) => {
+                  return (
+                    <>
+                      <div className="col">
+                        <div className="card h-100">
+                          {e ? (
+                            e.product_images.length === 0 ? (
+                              <img
+                                src="https://via.placeholder.com/150"
+                                alt=""
+                              />
+                            ) : (
+                              <img
+                                src={`http://localhost:4000/images/${e.product_images[0].prim_filename}`}
+                                alt=""
+                              />
+                            )
+                          ) : (
+                            <img src="https://via.placeholder.com/150" alt="" />
+                          )}
+
+                          <div className="card-body">
+                            <h5 className="card-title">{e.prod_name}</h5>
+                            <p className="card-text">
+                              <span>Rp </span> {e.prod_price}
+                            </p>
+                            <div className="edit-btn d-grid gap-2 d-md-flex justify-content-md-center">
+                              <Link
+                                className="btn btn-sm btn btn-outline-primary"
+                                onClick={() =>
+                                  dispatch(get_product_detail(e.id))
+                                }
+                                to={`detail/${e.id}`}
+                              >
+                                <span>
+                                  <FontAwesomeIcon
+                                    icon={faInfo}
+                                  ></FontAwesomeIcon>
+                                </span>{" "}
+                                Detail
+                              </Link>
+                              <button
+                                className="btn btn-sm btn-outline-success"
+                                onClick={() =>
+                                  dispatch(
+                                    addorder(
+                                      localStorage.getItem("access_token"),
+                                      e.id
+                                    )
                                   )
-                                )
-                              }
-                            >
-                              <span>
-                                <FontAwesomeIcon
-                                  icon={faPlus}
-                                ></FontAwesomeIcon>
-                              </span>{" "}
-                              Add
-                            </button>
+                                }
+                              >
+                                <span>
+                                  <FontAwesomeIcon
+                                    icon={faPlus}
+                                  ></FontAwesomeIcon>
+                                </span>{" "}
+                                Add
+                              </button>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </>
-                );
-              })
+                    </>
+                  );
+                })
             ) : getProductLoading ? (
               <p>Loading</p>
             ) : (

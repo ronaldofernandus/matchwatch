@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -11,6 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 function NavbarAfterLogin(props) {
+  const [search, setSearch] = useState("");
   const { loginCbHandler } = props;
 
   const logoutHandler = () => {
@@ -26,9 +27,12 @@ function NavbarAfterLogin(props) {
         </Link>
         <form class="d-flex">
           <input
-            class="form-control me-2"
+            onChange={(e) => {
+              setSearch(e.target.value);
+            }}
+            className=" search form-control me-1"
             type="search"
-            placeholder="Search"
+            placeholder="Search by Name"
             aria-label="Search"
           />
         </form>
