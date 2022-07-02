@@ -20,8 +20,8 @@ function NavbarAfterLogin(props) {
   };
 
   const searchHandler = () => {
-    
-    navigate("/");
+
+    navigate("/search");
   };
 
   return (

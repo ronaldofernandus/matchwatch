@@ -1,0 +1,22 @@
+.banner-home{
+    background-image: url(./img-3.png)
+}
+.bg-color-product{
+    background-color: #D9C7B1;
+}
+.product-title{
+    text-align: center;
+}
+.card-style{
+    max-width: 1000px;
+    
+    background-color: white;
+    border-radius: 10px;
+}
+.row-bg-color{
+    background-color: white;
+    border-radius: 20px;
+}
+
+
+

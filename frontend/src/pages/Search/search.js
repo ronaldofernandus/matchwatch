@@ -12,7 +12,7 @@ import Swal from "sweetalert2";
 import { addorder } from "../../action/OrderAction";
 import { useNavigate, useParams } from "react-router-dom";
 
-function Product() {
+function Search() {
   const [search, setSearch] = useState("");
   const { getProductResult, getProductLoading, getProductError } = useSelector(
     (state) => state.productReducer
@@ -144,4 +144,4 @@ function Product() {
   );
 }
 
-export default Product;
+export default Search;

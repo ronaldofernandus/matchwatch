@@ -7,6 +7,7 @@ import DetailProduct from "./Product/DetailProduct";
 import Product from "./Product/product";
 import Profile from "./Profile/Profile";
 import Succes from "./Succes/index";
+import Search from "./Search/search";
 
 function MainPageAfterLogin() {
   return (
@@ -15,6 +16,9 @@ function MainPageAfterLogin() {
       <Routes>
         <Route path="">
           <Route path="" element={<Product></Product>}></Route>
+
+          <Route path="search" element={<Search></Search>}></Route>
+
           <Route path="detail">
             <Route path=":id" element={<DetailProduct></DetailProduct>}></Route>
           </Route>
