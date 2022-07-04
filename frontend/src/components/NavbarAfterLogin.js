@@ -18,38 +18,14 @@ function NavbarAfterLogin(props) {
     loginCbHandler(false);
   };
 
-  const [query, setQuery] = useState("");
-
-  const [queryDone, setQueryDone] = useState(false);
-
-  useEffect(() => {
-    navigate(`${query}`);
-  }, [queryDone]);
-
+  
   return (
     <nav className="navbar navbar-expand-lg sticky-top bg-color-navbar">
       <div className="container-sm">
         <Link className="nav-link" to="/">
           <h1 className="title-navbar">MatchWatch</h1>
         </Link>
-        <form class="d-flex">
-          <input
-            onChange={(e) => {
-              setQuery(e.target.value);
-            }}
-            className=" search form-control me-1"
-            type="search"
-            placeholder="Search by Name"
-            aria-label="Search"
-          />
-          <button
-            onClick={() => setQueryDone(true)}
-            className="btn btn-outline-success"
-            type="submit"
-          >
-            Search
-          </button>
-        </form>
+        
         <ul className="navbar-nav justify-content-end">
           <li className="nav-item item-style">
             <Link className="nav-link" to="/profile" style={{ color: "white" }}>
