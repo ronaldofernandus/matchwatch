@@ -7,7 +7,7 @@ export const updateProductReducer = "updateProductReducer";
 export const getProductByIdReducer = "getProductByIdReducer";
 
 export const getProduct = () => {
-  const get_token = localStorage.getItem("get_token");
+  const access_token = localStorage.getItem("access_token");
   return (dispatch) => {
     dispatch({
       type: "getListProduct",
@@ -23,7 +23,7 @@ export const getProduct = () => {
       timeout: 120000,
 
       headers: {
-        get_token: get_token,
+        access_token: access_token,
       },
     })
       .then((response) => {
@@ -143,14 +143,14 @@ export const deleteProduct = (id) => {
 };
 
 export const detailProduct = (data) => {
-  const get_token = localStorage.getItem("get_token");
+  const access_token = localStorage.getItem("access_token");
   return (dispatch) => {
     dispatch({
       type: "getDetailProduct",
       payload: {
         data: data,
         headers: {
-          get_token: get_token,
+          access_token: access_token,
         },
       },
     });
@@ -159,7 +159,7 @@ export const detailProduct = (data) => {
 
 export const updateProduct = (data) => {
   // console.log("2.Masuk");
-  const get_token = localStorage.getItem("get_token");
+  const access_token = localStorage.getItem("access_token");
   return (dispatch) => {
     dispatch({
       type: "updateProductReducer",
@@ -176,7 +176,7 @@ export const updateProduct = (data) => {
       data: data,
 
       headers: {
-        get_token: get_token,
+        access_token: access_token,
       },
     })
       .then((response) => {
