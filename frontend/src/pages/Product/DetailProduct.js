@@ -10,7 +10,7 @@ import {
   faWarehouse,
   faEye,
 } from "@fortawesome/free-solid-svg-icons";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap.css";
 
 import { useDispatch, useSelector } from "react-redux";
 import { get_product_detail } from "../.././action/ProductAction";
@@ -63,40 +63,74 @@ function DetailProduct() {
               <>
                 <div className="row justify-content-center ">
                   <div className="col-6">
-                    {e.product_images
-
-                      .slice(indexOfFirstImages, indexOfLastImages)
-                      .map((imgResult) => {
-                        return (
-                          <>
-                            <img
-                              src={`http://localhost:4000/images/${imgResult.prim_filename}`}
-                              alt=""
-                              align="center"
-                            />
-                          </>
-                        );
-                      })}
-
-                    <nav aria-label="Page navigation example">
-                      <ul className="pagination">
-                        {pageNumber.map((page) => {
-                          return (
-                            <>
-                              <li className="page-item" key={page}>
-                                <button
-                                  onClick={() => paginate(page)}
-                                  className="page-link"
-                                  href=""
-                                >
-                                  {page}
-                                </button>
-                              </li>
-                            </>
-                          );
-                        })}
-                      </ul>
-                    </nav>
+                    <div
+                      id="carouselExampleControls"
+                      className="carousel slide"
+                      data-bs-ride="carousel"
+                    >
+                      <div class="carousel-inner">
+                        <div class="carousel-item active">
+                          <img
+                            src={`http://localhost:4000/images/${e.product_images[0].prim_filename}`}
+                            alt=""
+                            className="xzoom"
+                            xoriginal={`http://localhost:4000/images/${e.product_images[0].prim_filename}`}
+                            style={{
+                              height: "100%",
+                              width: "100%",
+                            }}
+                          />
+                        </div>
+                        <div class="carousel-item">
+                          <img
+                            src={`http://localhost:4000/images/${e.product_images[1].prim_filename}`}
+                            alt=""
+                            className="xzoom"
+                            xoriginal={`http://localhost:4000/images/${e.product_images[1].prim_filename}`}
+                            style={{
+                              height: "100%",
+                              width: "100%",
+                            }}
+                          />
+                        </div>
+                        <div class="carousel-item">
+                          <img
+                            src={`http://localhost:4000/images/${e.product_images[2].prim_filename}`}
+                            alt=""
+                            className="xzoom"
+                            xoriginal={`http://localhost:4000/images/${e.product_images[2].prim_filename}`}
+                            style={{
+                              height: "100%",
+                              width: "100%",
+                            }}
+                          />
+                        </div>
+                      </div>
+                      <button
+                        className="carousel-control-prev"
+                        type="button"
+                        data-bs-target="#carouselExampleControls"
+                        data-bs-slide="prev"
+                      >
+                        <span
+                          className="carousel-control-prev-icon"
+                          aria-hidden="true"
+                        ></span>
+                        <span className="visually-hidden">Previous</span>
+                      </button>
+                      <button
+                        className="carousel-control-next"
+                        type="button"
+                        data-bs-target="#carouselExampleControls"
+                        data-bs-slide="next"
+                      >
+                        <span
+                          className="carousel-control-next-icon"
+                          aria-hidden="true"
+                        ></span>
+                        <span className="visually-hidden">Next</span>
+                      </button>
+                    </div>
                   </div>
 
                   <div className="col-4">

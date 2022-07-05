@@ -89,6 +89,18 @@ const Home = () => {
                                   }}
                                 />
                               </div>
+                              <div class="carousel-item">
+                                <img
+                                  src={`http://localhost:4000/images/${product.product_images[2].prim_filename}`}
+                                  alt=""
+                                  className="xzoom"
+                                  xoriginal={`http://localhost:4000/images/${product.product_images[2].prim_filename}`}
+                                  style={{
+                                    height: "100%",
+                                    width: "100%",
+                                  }}
+                                />
+                              </div>
                             </div>
                             <button
                               className="carousel-control-prev"
