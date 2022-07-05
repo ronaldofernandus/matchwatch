@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./libraries/bootstrap/css/bootstrap.css";
+import "bootstrap/dist/css/bootstrap.css";
 import "./styles/main.css";
 import { detail1 } from "./image";
 import { useDispatch, useSelector } from "react-redux";
@@ -59,52 +59,63 @@ const Home = () => {
                       <p>{product.prod_price}</p>
                       <div className="gallery">
                         <div className="xzoom-container">
-                          {product.product_images
-
-                            .slice(indexOfFirstImages, indexOfLastImages)
-                            .map((imgResult) => {
-                              return (
-                                <>
-                                  <img
-                                    src={`http://localhost:4000/images/${imgResult.prim_filename}`}
-                                    alt=""
-                                    className="xzoom"
-                                    xoriginal={`http://localhost:4000/images/${imgResult.prim_filename}`}
-                                    style={{ height: "100%", width: "100%" }}
-                                  />
-                                </>
-                              );
-                            })}
-                          <nav aria-label="Page navigation example">
-                            <ul className="pagination">
-                              {pageNumber.map((page) => {
-                                return (
-                                  <>
-                                    <li className="page-item" key={page}>
-                                      <button
-                                        onClick={() => paginate(page)}
-                                        className="page-link"
-                                        href=""
-                                      >
-                                        {page}
-                                      </button>
-                                    </li>
-                                  </>
-                                );
-                              })}
-                            </ul>
-                          </nav>
+                          <div
+                            id="carouselExampleControls"
+                            className="carousel slide"
+                            data-bs-ride="carousel"
+                          >
+                            <div class="carousel-inner">
+                              <div class="carousel-item active">
+                                <img
+                                  src={`http://localhost:4000/images/${product.product_images[0].prim_filename}`}
+                                  alt=""
+                                  className="xzoom"
+                                  xoriginal={`http://localhost:4000/images/${product.product_images[0].prim_filename}`}
+                                  style={{
+                                    height: "100%",
+                                    width: "100%",
+                                  }}
+                                />
+                              </div>
+                              <div class="carousel-item">
+                                <img
+                                  src={`http://localhost:4000/images/${product.product_images[1].prim_filename}`}
+                                  alt=""
+                                  className="xzoom"
+                                  xoriginal={`http://localhost:4000/images/${product.product_images[1].prim_filename}`}
+                                  style={{
+                                    height: "100%",
+                                    width: "100%",
+                                  }}
+                                />
+                              </div>
+                            </div>
+                            <button
+                              className="carousel-control-prev"
+                              type="button"
+                              data-bs-target="#carouselExampleControls"
+                              data-bs-slide="prev"
+                            >
+                              <span
+                                className="carousel-control-prev-icon"
+                                aria-hidden="true"
+                              ></span>
+                              <span className="visually-hidden">Previous</span>
+                            </button>
+                            <button
+                              className="carousel-control-next"
+                              type="button"
+                              data-bs-target="#carouselExampleControls"
+                              data-bs-slide="next"
+                            >
+                              <span
+                                className="carousel-control-next-icon"
+                                aria-hidden="true"
+                              ></span>
+                              <span className="visually-hidden">Next</span>
+                            </button>
+                          </div>
                         </div>
-
-                        {/* <div className="xzoom-container">
-                          <img
-                            src={`http://localhost:4000/images/${product.product_images[0].prim_filename}`}
-                            alt=""
-                            className="xzoom"
-                            xoriginal={`http://localhost:4000/images/${product.product_images[0].prim_filename}`}
-                            style={{ height: "100%", width: "100%" }}
-                          />
-                        </div> */}
                       </div>
                       <h2>Deskripsi</h2>
                       <p>{product.prod_desc}</p>
