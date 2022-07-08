@@ -49,7 +49,7 @@ const ItemList = () => {
               </tr>
             </thead>
             <tbody>
-              {console.log(getListItemResult)}
+              
               {getListItemResult ? (
                 getListItemResult.map((item, index) => {
                   return (
