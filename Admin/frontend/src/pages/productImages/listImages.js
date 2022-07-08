@@ -54,7 +54,6 @@ const ListProduct = () => {
                   <th>No</th>
                   <th>Nama Produk</th>
                   <th>Image</th>
-                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -88,30 +87,6 @@ const ListProduct = () => {
                                 alt=""
                               />
                             )}
-                          </td>
-
-                          <td>
-                            <button
-                              onClick={() => dispatch(detailImage(image))}
-                              type="button"
-                              className="btn btn-success"
-                            >
-                              <AiFillEdit></AiFillEdit>
-                              <Link
-                                to={`/product/edit/${image.id}`}
-                                className="edit"
-                              >
-                                Edit
-                              </Link>
-                            </button>
-                            <button
-                              href="/productImage"
-                              onClick={() => deleteHandler(image.id)}
-                              type="button"
-                              className="btn btn-success"
-                            >
-                              Delete
-                            </button>
                           </td>
                         </tr>
                       </>

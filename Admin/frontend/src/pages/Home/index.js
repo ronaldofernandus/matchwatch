@@ -56,7 +56,7 @@ const Home = () => {
                   <>
                     <div className="card card-details">
                       <h1>{product.prod_name}</h1>
-                      <p>{product.prod_price}</p>
+                      <p>Rp{product.prod_price}</p>
                       <div className="gallery">
                         <div className="xzoom-container">
                           <div
