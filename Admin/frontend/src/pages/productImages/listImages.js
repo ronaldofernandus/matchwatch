@@ -68,10 +68,6 @@ const ListProduct = () => {
                           <td scope="row">{index + 1}</td>
                           {/* <td>Nama produk nya</td> */}
                           <td>{image.prod_name}</td>
-                          {/* <td>{image.product.prod_brand}</td> */}
-                          {/* <td>
-                            {image ? image : "https://via.placeholder.com/150"}
-                          </td> */}
 
                           <td>
                             {image ? (

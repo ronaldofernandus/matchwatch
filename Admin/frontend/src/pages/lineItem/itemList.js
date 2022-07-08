@@ -13,7 +13,7 @@ import Swal from "sweetalert2";
 
 import { getItem } from "../../Axios/itemAxios";
 
-const OrderList = () => {
+const ItemList = () => {
   const {
     getListItemResult,
     getListItemLoading,
@@ -58,6 +58,7 @@ const OrderList = () => {
                         <td>{item.line_qty}</td>
                         <td>{item.line_status}</td>
                         <td>{item.product.prod_name}</td>
+
                         <td>{item.product.prod_price}</td>
                         <td>{item.shopping_cart.shop_status}</td>
                         <td>{item.order.order_subtotal}</td>
@@ -78,4 +79,4 @@ const OrderList = () => {
   );
 };
 
-export default OrderList;
+export default ItemList;
